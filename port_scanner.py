@@ -26,7 +26,7 @@ def get_arguments():
 
 def create_socket():
     s = socket.socket(socket.AF_INET, socket. SOCK_STREAM)
-    s.timeout(1)
+    s.settimeout(1)
 
     open_sockets.append(s)
     return s
@@ -38,7 +38,8 @@ def port_scanner(port, host):
     try:
         s.connect((host, port))
         s.sendall(b"HEAD / HTTP/1.0\r\n\r\n")
-        response = s.recv(1024).decode(errors='ignore').split("\n")
+        response = s.recv(1024)
+        response = response.decode(errors='ignore').split("\n")
 
         if response:
             print(f"El puerto {port} está abierto\n")
