@@ -52,7 +52,7 @@ def port_scanner(port, host):
         pass
 
     finally:
-        s.close
+        s.close()
 
 def scan_ports(ports, target):
 
